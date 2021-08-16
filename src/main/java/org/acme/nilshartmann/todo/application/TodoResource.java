@@ -10,13 +10,13 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 @Path("/todo")
+@Produces(MediaType.APPLICATION_JSON)
 public class TodoResource {
 
     @Inject
     TodoService todoService;
 
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
     public Response showAllTodos() {
         return Response.ok(this.todoService.getAllTodos()).build();
     }
