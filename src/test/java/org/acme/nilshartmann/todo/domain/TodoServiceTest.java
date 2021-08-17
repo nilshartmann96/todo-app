@@ -1,16 +1,30 @@
-package org.acme.nilshartmann.todo.domain.todo;
+package org.acme.nilshartmann.todo.domain;
 
-import javax.enterprise.context.ApplicationScoped;
+import io.quarkus.test.junit.QuarkusTest;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import javax.inject.Inject;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.List;
 
-@ApplicationScoped
-public class TodoService {
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-    private final List<Todo> todos;
+@QuarkusTest
+public class TodoServiceTest {
 
-    public TodoService() {
+    @Inject
+    TodoService todoService;
+
+    @Test
+    @DisplayName("Check if todo list is returned as expected.")
+    void correctTodosReturned() {
+        List<Todo> todos = createTodosForComparison();
+        assertEquals(todos, todoService.getAllTodos());
+    }
+
+    private List<Todo> createTodosForComparison() {
         Todo todoObject1 = new Todo();
         todoObject1.setTitle("Unit Tests schreiben");
         todoObject1.setDescription("Lorem ipsum dolor sit amet.");
@@ -23,11 +37,7 @@ public class TodoService {
         todoObject2.setDueDate(LocalDateTime.of( 2021, Month.AUGUST, 20, 12, 0, 0 ));
         todoObject2.setStatus(Todo.Status.NOTDONE);
 
-        todos = List.of(todoObject1, todoObject2);
-    }
-
-    public List<Todo> getAllTodos() {
-        return todos;
+        return List.of(todoObject1, todoObject2);
     }
 
 }

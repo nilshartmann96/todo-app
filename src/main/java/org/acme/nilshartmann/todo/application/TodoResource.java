@@ -1,6 +1,6 @@
 package org.acme.nilshartmann.todo.application;
 
-import org.acme.nilshartmann.todo.domain.todo.TodoService;
+import org.acme.nilshartmann.todo.domain.TodoService;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;

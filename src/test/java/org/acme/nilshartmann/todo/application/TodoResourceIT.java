@@ -1,4 +1,4 @@
-package org.acme;
+package org.acme.nilshartmann.todo.application;
 
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.Test;

@@ -1,11 +1,12 @@
-package org.acme.nilshartmann.todo.domain.todo;
+package org.acme.nilshartmann.todo.domain;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 public class Todo implements Serializable {
 
-    enum Status {
+    public enum Status {
         DONE,
         NOTDONE
     }
@@ -47,4 +48,17 @@ public class Todo implements Serializable {
         this.status = status;
     }
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Todo todo = (Todo) o;
+        return title.equals(todo.title) && description.equals(todo.description) && dueDate.equals(todo.dueDate) && status == todo.status;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(title, description, dueDate, status);
+    }
 }
